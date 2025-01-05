@@ -6,7 +6,7 @@
 /*   By: ddaniel- <ddaniel-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:43:52 by ddaniel-          #+#    #+#             */
-/*   Updated: 2024/08/08 19:55:11 by ddaniel-         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:16:21 by ddaniel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	error_syntax(char *str_n)
 {
 	if (!(*str_n == '+' || *str_n == '-' || (*str_n >= '0' && *str_n <= '9')))
 		return (1);
-	if ((*str_n == '+' || *str_n == '-') 
+	if ((*str_n == '+' || *str_n == '-')
 		&& !(str_n[1] >= '0' && str_n[1] <= '9'))
 		return (1);
 	while (*++str_n)
@@ -59,9 +59,23 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-void	free_errors(t_stack_node **a)
+void	free_matrix(char **argv)
+{
+	int	i;
+
+	i = -1;
+	if (!argv || !*argv)
+		return ;
+	while (argv[i])
+		free(argv[i++]);
+	free(argv - 1);
+}
+
+void	free_errors(t_stack_node **a, char **argv, bool argc_is_2)
 {
 	free_stack(a);
+	if (argc_is_2)
+		free_matrix(argv);
 	write(1, "Error\n", 6);
 	exit(1);
 }

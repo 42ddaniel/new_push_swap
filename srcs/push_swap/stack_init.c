@@ -6,7 +6,7 @@
 /*   By: ddaniel- <ddaniel-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 23:56:25 by ddaniel-          #+#    #+#             */
-/*   Updated: 2024/06/24 16:20:34 by ddaniel-         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:16:11 by ddaniel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	append_node(t_stack_node **stack, int n)
 		return ;
 	node->next = NULL;
 	node->nbr = n;
+	node->cheapest = 0;
 	if (*stack == NULL)
 	{
 		*stack = node;
@@ -61,7 +62,7 @@ static void	append_node(t_stack_node **stack, int n)
 	}
 }
 
-void	init_stack_a(t_stack_node **a, char **argv)
+void	init_stack_a(t_stack_node **a, char **argv, bool argc_is_2)
 {
 	long	n;
 	int		i;
@@ -70,15 +71,17 @@ void	init_stack_a(t_stack_node **a, char **argv)
 	while ((argv[i]))
 	{
 		if (error_syntax(argv[i]))
-			free_errors(a);
+			free_errors(a, argv, argc_is_2);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			free_errors(a);
+			free_errors(a, argv, argc_is_2);
 		if (error_duplicate(*a, (int)n))
-			free_errors(a);
+			free_errors(a, argv, argc_is_2);
 		append_node(a, (int)n);
 		i++;
 	}
+	if (argc_is_2)
+		free_matrix(argv);
 }
 
 t_stack_node	*return_cheapest(t_stack_node *stack)
