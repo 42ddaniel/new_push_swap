@@ -6,7 +6,7 @@
 /*   By: ddaniel- <ddaniel-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:49:29 by ddaniel-          #+#    #+#             */
-/*   Updated: 2025/01/05 23:12:56 by ddaniel-         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:50:09 by ddaniel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			free_matrix(char **argv);
 void			init_stack_a(t_stack_node **a, char **argv, bool argc_is_2);
 char			**ft_split(char *s, char c);
 
-//NODES INIT
+//NODES
 t_stack_node	*return_cheapest(t_stack_node *stack);
 void			init_a(t_stack_node *a, t_stack_node *b);
 void			init_b(t_stack_node *a, t_stack_node *b);

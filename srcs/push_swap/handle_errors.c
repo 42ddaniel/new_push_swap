@@ -6,7 +6,7 @@
 /*   By: ddaniel- <ddaniel-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:43:52 by ddaniel-          #+#    #+#             */
-/*   Updated: 2025/01/05 23:16:21 by ddaniel-         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:34:44 by ddaniel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,46 +38,6 @@ int	error_duplicate(t_stack_node *a, int n)
 		a = a->next;
 	}
 	return (0);
-}
-
-void	free_stack(t_stack_node **stack)
-{
-	t_stack_node	*tmp;
-	t_stack_node	*current;
-
-	if (!stack)
-		return ;
-	current = *stack;
-	while (current)
-	{
-		tmp = current->next;
-		current->nbr = 0;
-		free (current);
-		current = tmp;
-	}
-	free(current);
-	*stack = NULL;
-}
-
-void	free_matrix(char **argv)
-{
-	int	i;
-
-	i = -1;
-	if (!argv || !*argv)
-		return ;
-	while (argv[i])
-		free(argv[i++]);
-	free(argv - 1);
-}
-
-void	free_errors(t_stack_node **a, char **argv, bool argc_is_2)
-{
-	free_stack(a);
-	if (argc_is_2)
-		free_matrix(argv);
-	write(1, "Error\n", 6);
-	exit(1);
 }
 
 void	min_on_top(t_stack_node **a)
