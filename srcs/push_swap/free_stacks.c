@@ -6,7 +6,7 @@
 /*   By: ddaniel- <ddaniel-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:44:43 by ddaniel-          #+#    #+#             */
-/*   Updated: 2025/01/17 13:05:11 by ddaniel-         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:23:23 by ddaniel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,17 @@ void	free_errors(t_stack_node **a, char **argv, bool argc_is_2)
 		free_matrix(argv);
 	write(2, "Error\n", 6);
 	exit(1);
+}
+
+void	free_av(char **new_argv)
+{
+	int	i;
+
+	i = 0;
+	if (!new_argv)
+		return ;
+	while (new_argv[i])
+		free(new_argv[i++]);
+	free(new_argv);
+	return ;
 }
